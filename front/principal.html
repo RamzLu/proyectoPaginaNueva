@@ -119,7 +119,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form id="formulario-pregunta">
               <div class="mb-3">
                 <label
                   for="descripcionPregunta"
@@ -187,7 +187,12 @@
             >
               Cerrar
             </button>
-            <button type="button" class="btn bg-black text-light rounded-pill">
+            <button
+              type="submit"
+              id="btn-preguntar"
+              form="formulario-pregunta"
+              class="btn bg-black text-light rounded-pill"
+            >
               PREGUNTAR
             </button>
           </div>
@@ -197,6 +202,8 @@
 
     <!-- Bootstrap JS (al final del body, si no está ya incluido) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/backend/paginaPrincipal/simbolos.js"></script>
+    <script src="./paginaPrincipal/simbolos.js"></script>
+    <script src="./cliente.js"></script>
+    <!-- <script src="../backend/servidor.js"></script> -->
   </body>
 </html>

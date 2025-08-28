@@ -14,13 +14,23 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "front")));
 
+const preguntas = [];
+
 app.post("/api/preguntas", (req, res) => {
   const { descripcion, tema } = req.body;
 
+  const nuevaPregunta = { descripcion, tema, fecha: new Date() };
+  preguntas.push(nuevaPregunta);
+  console.log(" > Pregunta guardada:", nuevaPregunta);
+  res.status(201).json(nuevaPregunta);
+
   console.log("   > Tema:", tema);
   console.log("   > Descripción:", descripcion);
-
   res.status(201).json({ message: "Pregunta recibida con éxito" });
+});
+
+app.get("/api/preguntas", (req, res) => {
+  res.json(preguntas);
 });
 
 app.listen(PORT, () => {

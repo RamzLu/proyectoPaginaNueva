@@ -35,6 +35,19 @@ document.addEventListener("DOMContentLoaded", () => {
         // se limpia el formulario
         MiFomulario.reset();
         MiModal.hide();
+
+        const lista = document.getElementById("lista-preguntas");
+        const nuevaPregunta = document.createElement("div");
+
+        nuevaPregunta.classList.add("card", "mt-2", "shadow-sm");
+        nuevaPregunta.innerHTML = `
+        <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">${tema}</h6>
+        <p class="card-text">${descripcion}</p>
+        </div>
+        `;
+
+        lista.prepend(nuevaPregunta);
       } else {
         alert("Hubo un error al enviar una pregunta");
       }
@@ -46,3 +59,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+async function cargarPreguntas() {
+  try {
+    const resp = await fetch("http://localhost:3000/api/preguntas");
+    const data = await resp.json();
+
+    const lista = document.getElementById("lista-preguntas");
+    lista.innerHTML = "";
+    data.forEach((p) => {
+      const preguntaEl = document.createElement("div");
+      preguntaEl.classList.add("card", "mt-2", "shadow-sm");
+      preguntaEl.innerHTML = `
+      <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">${p.tema}</h6>
+      <p class="card-text">${p.descripcion}</p>
+      </div>
+      `;
+      lista.prepend.apply(preguntaEl);
+    });
+  } catch (error) {
+    console.error("Error cargando preguntas:", err);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", cargarPreguntas);

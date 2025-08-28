@@ -80,10 +80,11 @@ textarea.form-control {
 
 /* --------cardhacerPregunta----------- */
 .gradient-card {
-  background: linear-gradient(-45deg, #001f3f, #0074d9, #7fdbff, #ffffff);
+  background: linear-gradient(-45deg, #001f3f, #0074d9, #7fdbff, #c6cffa);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
   border: none; /* opcional, para que se vea más limpio */
+  border-radius: 15px;
   color: white; /* asegura contraste */
 }
 

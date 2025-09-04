@@ -7,8 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const preguntaEl = document.createElement("div");
     preguntaEl.classList.add("card", "mt-2", "shadow-sm");
     preguntaEl.style.width = "40rem";
+    preguntaEl.style.background =
+      "linear-gradient(to bottom right, #d9e3eeff, #e9ecef)"; // Degradado de blanco muy claro a gris claro
+    preguntaEl.style.border = "1px solid #dee2e6"; // Borde suave
+    preguntaEl.style.borderRadius = "0.5rem"; // Bordes un poco más redondeados
     preguntaEl.innerHTML = `
-      <div class="card-body col-9">
+      <div class="card-body">
         <!-- Usuario -->
         <div class="d-flex align-items-center mb-3">
           <img src="https://via.placeholder.com/40" alt="Foto perfil" 
@@ -22,40 +26,86 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
 
-        <span class="badge bg-primary mb-2">${p.tema}</span>
-        <p class="card-text">${p.descripcion}</p>
-         <button class="btn btn-danger btn-sm btn-eliminar" data-id="${p.id}">
-        Eliminar
-      </button>
-      </div>
+      <p class="card-text">${p.descripcion}</p>
+      
+      <div class="mt-auto">
+  
+  <div class="d-flex justify-content-between align-items-center original-controls">
+    <span class="badge bg-secondary">${p.tema}</span>
+    <button class="btn btn-danger btn-sm btn-eliminar mb-2" data-id="${p.id}">
+      <i class="bi bi-trash3"></i> Eliminar
+    </button>
+  </div>
+
+<div class="text-end confirmation-controls" style="display: none;">
+  <button class="btn btn-secondary btn-sm btn-cancelar me-1">Cancelar</button>
+  <button class="btn btn-success btn-sm btn-confirmar-eliminar">Confirmar</button>
+</div>
+
+</div>
+
+    </div>
     `;
     lista.prepend(preguntaEl);
-
+    const originalControls = preguntaEl.querySelector(".original-controls");
+    const confirmationControls = preguntaEl.querySelector(
+      ".confirmation-controls"
+    );
     const btnEliminar = preguntaEl.querySelector(".btn-eliminar");
-    btnEliminar.addEventListener("click", async () => {
-      if (confirm("¿Seguro que deseas eliminar esta pregunta?")) {
-        try {
-          const resp = await fetch(
-            `http://localhost:3000/api/preguntas/${p.id}`,
-            {
-              method: "DELETE",
-            }
-          );
+    const btnCancelar = preguntaEl.querySelector(".btn-cancelar");
+    const btnConfirmar = preguntaEl.querySelector(".btn-confirmar-eliminar");
 
-          if (resp.ok) {
-            preguntaEl.remove(); // la quitamos del DOM
-            alert("Pregunta eliminada");
-          } else {
-            alert("Error al eliminar la pregunta");
-          }
-        } catch (error) {
-          console.error("Error al eliminar:", error);
-          alert("No se pudo conectar con el servidor");
+    btnEliminar.addEventListener("click", () => {
+      originalControls.style.display = "none"; // Oculta los controles originales
+      confirmationControls.style.display = "block"; // Muestra la confirmación
+    });
+
+    // 2. Cuando el usuario hace clic en "Cancelar"
+    btnCancelar.addEventListener("click", () => {
+      originalControls.style.display = "flex"; // Vuelve a mostrar los originales
+      confirmationControls.style.display = "none"; // Oculta la confirmación
+    });
+
+    // 3. Cuando el usuario hace clic en "Confirmar"
+    btnConfirmar.addEventListener("click", async () => {
+      try {
+        const resp = await fetch(
+          `http://localhost:3000/api/preguntas/${p.id}`,
+          { method: "DELETE" }
+        );
+
+        if (resp.ok) {
+          preguntaEl.remove(); // Quita la tarjeta del DOM
+
+          // Lanza la notificación TOAST en la esquina superior derecha
+          Swal.fire({
+            toast: true,
+            position: "top-end",
+            icon: "success",
+            title: "Pregunta eliminada",
+            showConfirmButton: false,
+            timer: 3000, // El mensaje dura 3 segundos
+            timerProgressBar: true,
+          });
+        } else {
+          Swal.fire({
+            toast: true,
+            position: "top-end",
+            icon: "error",
+            title: "Error al eliminar",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+          }); // Puedes cambiar esto por un toast de error también
+          originalControls.style.display = "flex"; // Vuelve a mostrar los originales
+          confirmationControls.style.display = "none";
         }
+      } catch (error) {
+        console.error("Error al eliminar:", error);
+        alert("No se pudo conectar con el servidor");
       }
     });
   }
-
   async function cargarPreguntas() {
     try {
       const resp = await fetch("http://localhost:3000/api/preguntas");
@@ -74,7 +124,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const tema = document.getElementById("temaPregunta").value;
 
     if (descripcion.trim() === "" || tema === "Selecciona una asignatura") {
-      alert("Por favor complete todos los campos");
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "info",
+        title: "Por favor, completa todos los campos",
+        showConfirmButton: false,
+        timer: 3500, // Un poco más de tiempo para que se lea
+        timerProgressBar: true,
+      });
       return;
     }
 
@@ -89,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const nuevaPregunta = await respond.json();
         renderPregunta(nuevaPregunta);
 
-        alert("¡Pregunta enviada con éxito!");
         MiFomulario.reset();
         MiModal.hide();
       } else {

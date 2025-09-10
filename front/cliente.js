@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Pregunta eliminada",
             showConfirmButton: false,
             timer: 3000, // El mensaje dura 3 segundos
-            timerProgressBar: true,
+            timerProgressBar: false,
           });
         } else {
           Swal.fire({
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Error al eliminar",
             showConfirmButton: false,
             timer: 3000,
-            timerProgressBar: true,
+            timerProgressBar: false,
           }); // Puedes cambiar esto por un toast de error también
           originalControls.style.display = "flex"; // Vuelve a mostrar los originales
           confirmationControls.style.display = "none";
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
         title: "Por favor, completa todos los campos",
         showConfirmButton: false,
         timer: 3500, // Un poco más de tiempo para que se lea
-        timerProgressBar: true,
+        timerProgressBar: false,
       });
       return;
     }

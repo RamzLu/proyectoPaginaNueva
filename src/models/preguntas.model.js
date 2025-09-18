@@ -10,4 +10,5 @@ export const Pregunta = sequelize.define("Pregunta", {
     type: DataTypes.STRING(100),
     allowNull: false,
   },
+  imagen: { type: DataTypes.STRING },
 });

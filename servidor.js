@@ -22,7 +22,7 @@ app.post("/api/preguntas", (req, res) => {
   const { descripcion, tema } = req.body;
 
   const nuevaPregunta = { descripcion, tema, fecha: new Date() };
-  preguntas.push(nuevaPregunta);
+  preguntas.unshift(nuevaPregunta);
   console.log(" > Pregunta guardada:", nuevaPregunta);
   res.status(201).json(nuevaPregunta);
 

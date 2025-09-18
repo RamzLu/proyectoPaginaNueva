@@ -27,7 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
 
       <p class="card-text">${p.descripcion}</p>
-      
+      ${
+        p.imagen
+          ? `<img src="http://localhost:3000/uploads/${p.imagen}" class="img-fluid rounded mt-2" alt="Imagen pregunta">`
+          : ""
+      }
       <div class="mt-auto">
   
   <div class="d-flex justify-content-between align-items-center original-controls">
@@ -110,8 +114,12 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const resp = await fetch("http://localhost:3000/api/preguntas");
       const data = await resp.json();
+      data.sort(
+        (a, b) =>
+          new Date(b.fecha || b.createdAt) - new Date(a.fecha || a.createdAt)
+      );
       lista.innerHTML = "";
-      data.forEach(renderPregunta);
+      data.forEach((p) => renderPregunta(p));
     } catch (error) {
       console.error("Error cargando preguntas:", error);
     }
@@ -122,6 +130,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const descripcion = document.getElementById("descripcionPregunta").value;
     const tema = document.getElementById("temaPregunta").value;
+    const imagen = document.getElementById("imagenPregunta").files[0];
+
+    const formData = new FormData();
+    formData.append("descripcion", descripcion);
+    formData.append("tema", tema);
+    if (imagen) formData.append("imagen", imagen);
 
     if (descripcion.trim() === "" || tema === "Selecciona una asignatura") {
       Swal.fire({
@@ -139,8 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const respond = await fetch("http://localhost:3000/api/preguntas", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ descripcion, tema }),
+        body: formData,
       });
 
       if (respond.ok) {

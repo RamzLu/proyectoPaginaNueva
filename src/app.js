@@ -7,10 +7,10 @@ const app = express();
 
 // Middlewares
 app.use(cors());
-app.use(express.json());
 
 // Rutas
 app.use("/api/preguntas", routerPreguntas);
+app.use("/uploads", express.static("uploads"));
 
 // Sincronizar BD
 sequelize

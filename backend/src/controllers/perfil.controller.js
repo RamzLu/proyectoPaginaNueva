@@ -1,30 +1,13 @@
-import { perfilModel } from "../models/perfil.model.js";
+import Perfil from '../models/perfil.model.js';
 
-export const createPerfil = async (req, res) => {
-  try {
-    const {
-      usuario,
-      nombre,
-      email,
-      compania,
-      bio,
-      cumple,
-      pais,
-      telefono,
-      website,
-      twitter,
-      facebook,
-      google,
-      linkedin,
-      instagram,
-    } = req.body;
-
-
-  } catch (error) {}
+export const crearPerfil = async (req, res) => {
+    try {
+        const { usuario, nombre, email, compania } = req.body;
+        const nuevoPerfil = await Perfil.create({ usuario, nombre, email, compania });
+        res.json(nuevoPerfil);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al guardar el perfil' });
+    }
 };
 
-
-export const getAllPerfil = async (req, res) => {
-
-}
 

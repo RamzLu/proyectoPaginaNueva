@@ -1,0 +1,118 @@
+/* navegador */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+.list-group-item {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.list-group-item:hover {
+  background-color: #0d6efd; /* Color primario de Bootstrap */
+  color: #fff;
+  cursor: pointer;
+}
+.card-title {
+  font-family: "Outfit", Arial, sans-serif;
+  font-size: 60px;
+}
+
+.custom-ask-btn {
+  color: #fff;
+  background-color: #0ea8c7; /* Celeste Bootstrap */
+  border: none;
+  transition: background-color 0.3s;
+  font-family: "Outfit", Arial, sans-serif;
+}
+.custom-ask-btn {
+  transition: background-color 0.3s, color 0.3s;
+}
+.custom-ask-btn:hover {
+  background-color: #0d6efd; /* Azul Bootstrap */
+}
+
+.modal-content {
+  background-color: rgba(255, 255, 255, 0.8); /* Blanco con transparencia */
+  /* Puedes ajustar el 0.92 para más o menos transparencia */
+}
+
+.modal-backdrop.show {
+  background-color: #c2d7db !important; /* Celeste */
+  opacity: 0.7 !important; /* Ajusta la opacidad si lo deseas */
+}
+
+.form-control {
+  border-radius: 2rem; /* Ajusta el valor para más o menos redondez */
+  border-radius: 2rem;
+  background-color: #e6f7fa; /* Color de fondo del input */
+  color: #222e3a;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+textarea.form-control {
+  resize: none !important;
+}
+
+.custom-select-asignatura {
+  max-width: 220px;
+  background-color: #e6f7fa;
+  border: 2px solid #0ea8c7;
+  color: #222e3a;
+  font-family: "Outfit", Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(14, 168, 199, 0.07);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.custom-select-asignatura:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+.icon-math-dark {
+  color: #000 !important;
+  font-weight: bold;
+  text-shadow: 0 0 2px #222;
+}
+
+/* --------cardhacerPregunta----------- */
+.gradient-card {
+  background: linear-gradient(-45deg, #001f3f, #0074d9, #7fdbff, #c6cffa);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  border: none; /* opcional, para que se vea más limpio */
+  border-radius: 15px;
+  color: white; /* asegura contraste */
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ----------------------------------- */
+.btn-eliminar {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-eliminar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4); /* rojo con sombra */
+}
+.brand-name {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800; /* Un peso más grueso, como Black */
+}
+
+.bgFooter {
+  background-color: #001f3f; /* Azul oscuro */
+}

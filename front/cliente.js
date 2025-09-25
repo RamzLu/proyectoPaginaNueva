@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="d-flex justify-content-between align-items-center original-controls">
             <div>
                 <span class="badge bg-secondary">${p.tema}</span>
-                <button class="btn btn-sm btn-light ms-2 btn-respuestas" data-id="${
+               
+                <button class="btn btn-sm btn-light ms-2 btn-respuestas mt-1" data-id="${
                   p.id
                 }">
                     <i class="bi bi-chat-dots"></i> Ver Respuestas

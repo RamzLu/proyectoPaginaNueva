@@ -185,7 +185,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   MiFomulario.addEventListener("submit", async (evento) => {
     evento.preventDefault();
-    // ... (código para enviar una nueva pregunta, sin cambios)
+
+    const descripcion = document.getElementById("descripcionPregunta").value;
+    const tema = document.getElementById("temaPregunta").value;
+    const imagen = document.getElementById("imagenPregunta").files[0];
+
+    const formData = new FormData();
+    formData.append("descripcion", descripcion);
+    formData.append("tema", tema);
+    if (imagen) formData.append("imagen", imagen);
+
+    if (descripcion.trim() === "" || tema === "Selecciona una asignatura") {
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "info",
+        title: "Por favor, completa todos los campos",
+        showConfirmButton: false,
+        timer: 3500, // Un poco más de tiempo para que se lea
+        timerProgressBar: false,
+      });
+      return;
+    }
+
+    try {
+      const respond = await fetch("http://localhost:3000/api/preguntas", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (respond.ok) {
+        const nuevaPregunta = await respond.json();
+        renderPregunta(nuevaPregunta);
+
+        MiFomulario.reset();
+        MiModal.hide();
+      } else {
+        alert("Hubo un error al enviar una pregunta");
+      }
+    } catch (error) {
+      console.error("Error de conexión:", error);
+      alert("No se pudo conectar con el servidor. Revisa que esté encendido.");
+    }
   });
 
   cargarPreguntas();

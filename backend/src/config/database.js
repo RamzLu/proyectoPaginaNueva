@@ -2,8 +2,6 @@ import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
 dotenv.config();
 
-console.log('DB_DIALECT:', process.env.DB_DIALECT); // <-- Agrega esta línea
-
 export const sequelize = new Sequelize(
     process.env.DB_NAME,
     process.env.DB_USER,

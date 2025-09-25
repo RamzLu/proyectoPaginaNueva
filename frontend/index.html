@@ -1,4 +1,3 @@
-
 <!--Website: wwww.codingdung.com-->
 <!DOCTYPE html>
 <html lang="en">
@@ -38,38 +37,24 @@
                     <div class="tab-content">
                         <div class="tab-pane fade active show" id="account-general">
                             <div class="card-body media align-items-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt
-                                    class="d-block ui-w-80">
-                                <div class="media-body ml-4">
-                                    <label class="btn btn-outline-primary">
-                                        Ingrese una foto
-                                        <input type="file" class="account-settings-fileinput">
-                                    </label> &nbsp;
-                                    <button type="button" class="btn btn-default md-btn-flat">Reset</button>
-                                    <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
-                                </div>
                             </div>
                             <hr class="border-light m-0">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label class="form-label">Usuario</label>
-                                    <input type="text" class="form-control mb-1" value="nmaxwell">
+                                    <input type="text" class="form-control mb-1" id="usuario" value="nmaxwell">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" value="Nelle Maxwell">
+                                    <input type="text" class="form-control" id="nombre" value="Nelle Maxwell">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">E-mail</label>
-                                    <input type="text" class="form-control mb-1" value="nmaxwell@mail.com">
-                                    <div class="alert alert-warning mt-3">
-                                        Tu gmail no esta confirmado. Por favor revise su bandeja.<br>
-                                        <a href="javascript:void(0)">Resend confirmation</a>
-                                    </div>
+                                    <input type="text" class="form-control mb-1" id="email" value="nmaxwell@mail.com">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Compañia</label>
-                                    <input type="text" class="form-control" value="Company Ltd.">
+                                    <input type="text" class="form-control" id="compania" value="Company Ltd.">
                                 </div>
                             </div>
                         </div>
@@ -94,7 +79,7 @@
                                 <div class="form-group">
                                     <label class="form-label">Bio</label>
                                     <textarea class="form-control"
-                                        rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nunc arcu, dignissim sit amet sollicitudin iaculis, vehicula id urna. Sed luctus urna nunc. Donec fermentum, magna sit amet rutrum pretium, turpis dolor molestie diam, ut lacinia diam risus eleifend sapien. Curabitur ac nibh nulla. Maecenas nec augue placerat, viverra tellus non, pulvinar risus.</textarea>
+                                        rows="5">Escribe tu bio aqui!...</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Cumpleaños</label>
@@ -105,7 +90,7 @@
                                     <select class="custom-select">
                                         <option>USA</option>
                                         <option selected>Canada</option>
-                                        <option>UK</option>
+                                        <option>Argentina</option>
                                         <option>Germany</option>
                                         <option>France</option>
                                     </select>
@@ -128,23 +113,23 @@
                             <div class="card-body pb-2">
                                 <div class="form-group">
                                     <label class="form-label">Twitter</label>
-                                    <input type="text" class="form-control" value="https://twitter.com/user">
+                                    <input type="text" class="form-control" id="twitter" value="https://twitter.com/user">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Facebook</label>
-                                    <input type="text" class="form-control" value="https://www.facebook.com/user">
+                                    <input type="text" class="form-control" id="facebook" value="https://www.facebook.com/user">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Google+</label>
-                                    <input type="text" class="form-control" value>
+                                    <input type="text" class="form-control" id="google" value>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">LinkedIn</label>
-                                    <input type="text" class="form-control" value>
+                                    <input type="text" class="form-control" id="linkedin" value>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Instagram</label>
-                                    <input type="text" class="form-control" value="https://www.instagram.com/user">
+                                    <input type="text" class="form-control" id="instagram" value="https://www.instagram.com/user">
                                 </div>
                             </div>
                         </div>
@@ -180,7 +165,7 @@
                                 <h6 class="mb-4">Activity</h6>
                                 <div class="form-group">
                                     <label class="switcher">
-                                        <input type="checkbox" class="switcher-input" checked>
+                                        <input type="checkbox" class="switcher-input" id="notifica_comentario" checked>
                                         <span class="switcher-indicator">
                                             <span class="switcher-yes"></span>
                                             <span class="switcher-no"></span>
@@ -190,7 +175,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="switcher">
-                                        <input type="checkbox" class="switcher-input" checked>
+                                        <input type="checkbox" class="switcher-input" id="notifica_respuesta" checked>
                                         <span class="switcher-indicator">
                                             <span class="switcher-yes"></span>
                                             <span class="switcher-no"></span>
@@ -201,7 +186,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="switcher">
-                                        <input type="checkbox" class="switcher-input">
+                                        <input type="checkbox" class="switcher-input" id="notifica_seguir">
                                         <span class="switcher-indicator">
                                             <span class="switcher-yes"></span>
                                             <span class="switcher-no"></span>
@@ -215,7 +200,7 @@
                                 <h6 class="mb-4">Aplicaciones</h6>
                                 <div class="form-group">
                                     <label class="switcher">
-                                        <input type="checkbox" class="switcher-input" checked>
+                                        <input type="checkbox" class="switcher-input" id="notifica_noticias" checked>
                                         <span class="switcher-indicator">
                                             <span class="switcher-yes"></span>
                                             <span class="switcher-no"></span>
@@ -225,7 +210,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="switcher">
-                                        <input type="checkbox" class="switcher-input">
+                                        <input type="checkbox" class="switcher-input" id="notifica_actualizaciones">
                                         <span class="switcher-indicator">
                                             <span class="switcher-yes"></span>
                                             <span class="switcher-no"></span>
@@ -235,7 +220,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="switcher">
-                                        <input type="checkbox" class="switcher-input" checked>
+                                        <input type="checkbox" class="switcher-input" id="notifica_blog" checked>
                                         <span class="switcher-indicator">
                                             <span class="switcher-yes"></span>
                                             <span class="switcher-no"></span>
@@ -250,16 +235,13 @@
             </div>
         </div>
         <div class="text-right mt-3">
-            <button type="button" class="btn btn-primary">Guardar cambios</button>&nbsp;
+            <button type="button" class="btn btn-primary" id="guardarPerfil">Guardar cambios</button>&nbsp;
             <button type="button" class="btn btn-default">Cancelar</button>
         </div>
     </div>
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript">
-
-    </script>
+    <script src="assets/scripts/script.js"></script>
 </body>
-
 </html>

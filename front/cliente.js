@@ -75,8 +75,42 @@ document.addEventListener("DOMContentLoaded", () => {
       confirmationControls.style.display = "none";
     });
 
+    // --- CÓDIGO CORREGIDO AQUÍ ---
     btnConfirmar.addEventListener("click", async () => {
-      // ... (código para eliminar la pregunta, sin cambios)
+      try {
+        const resp = await fetch(
+          `http://localhost:3000/api/preguntas/${p.id}`,
+          { method: "DELETE" }
+        );
+
+        if (resp.ok) {
+          preguntaEl.remove(); // Quita la tarjeta del DOM
+          Swal.fire({
+            toast: true,
+            position: "top-end",
+            icon: "success",
+            title: "Pregunta eliminada",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: false,
+          });
+        } else {
+          Swal.fire({
+            toast: true,
+            position: "top-end",
+            icon: "error",
+            title: "Error al eliminar",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: false,
+          });
+          originalControls.style.display = "flex";
+          confirmationControls.style.display = "none";
+        }
+      } catch (error) {
+        console.error("Error al eliminar:", error);
+        alert("No se pudo conectar con el servidor");
+      }
     });
 
     // Lógica para respuestas
@@ -202,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
         icon: "info",
         title: "Por favor, completa todos los campos",
         showConfirmButton: false,
-        timer: 3500, // Un poco más de tiempo para que se lea
+        timer: 3500,
         timerProgressBar: false,
       });
       return;
